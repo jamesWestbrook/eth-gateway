@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  eth-game:
+    image: docker.io/westbrook/eth-gateway
+    environment:
+      - PORT=8080
+      - API_URI=http://host.docker.internal:8080
+      - GAME_URI=http://host.docker.internal:3000
+    ports:
+      - 9000:8080
