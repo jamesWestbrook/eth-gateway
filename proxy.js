@@ -3,8 +3,13 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const app = express();
 
+const PORT = process.env.PORT;
+const API_URI = process.env.API_URI;
+const GAME_URI = process.env.GAME_URI;
+
+
 app.use('/api', createProxyMiddleware({ 
-    target: 'http://localhost:8080', 
+    target: API_URI, 
     changeOrigin: true,
     pathRewrite: {
         '^/api': '',
@@ -12,8 +17,8 @@ app.use('/api', createProxyMiddleware({
 }));
 
 app.use('*', createProxyMiddleware({ 
-    target: 'http://localhost:3000', 
+    target: GAME_URI, 
     changeOrigin: true,
 }));
 
-app.listen(9090);
+app.listen(PORT);
